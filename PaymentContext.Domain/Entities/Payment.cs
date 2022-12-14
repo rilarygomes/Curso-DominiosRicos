@@ -12,6 +12,7 @@ namespace PaymentContext.Domain.Entities
             decimal total,
             decimal totalPaid,
             Document document,
+            string payer,
             Adress adress,
             Email email
             )
@@ -22,6 +23,7 @@ namespace PaymentContext.Domain.Entities
             Total = total;
             TotalPaid = totalPaid;
             Document = document;
+            Payer = payer;
             Adress = adress;
             Email = email;
 
@@ -37,6 +39,7 @@ namespace PaymentContext.Domain.Entities
         public DateTime ExpireDate { get; private set; }
         public decimal Total { get; private set; }
         public decimal TotalPaid { get; private set; }
+        public string Payer { get; private set; }
         public Document Document { get; private set; }
         public Adress Adress { get; private set; }
         public Email Email { get; private set; }
