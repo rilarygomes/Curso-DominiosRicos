@@ -22,6 +22,7 @@ namespace PaymentContext.Domain.Commands
         public DateTime ExpireDate { get; set; }
         public decimal Total { get; set; }
         public decimal TotalPaid { get; set; }
+        public string Payer { get; set; }
         public string PayerDocument { get; set; }
         public EDocumentType PayerDocumentType { get; set; }
         public string PayerEmail { get; set; }
@@ -41,7 +42,7 @@ namespace PaymentContext.Domain.Commands
                  .IsGreaterThan(FirstName, 3, "Name.FirstName", "Nome deve conter pelo menos 3 caracteres.")
                  .IsGreaterThan(LastName, 3, "Name.LastName", "Sobrenome deve conter pelo menos 3 caracteres.")
                  .IsLowerThan(FirstName, 40, "Name.FirstName", "Nome deve conter no máximo 40 caracteres.")
-             ); ;
+             ); 
         }
     }
 }
