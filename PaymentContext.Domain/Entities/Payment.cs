@@ -12,7 +12,6 @@ namespace PaymentContext.Domain.Entities
             decimal total,
             decimal totalPaid,
             Document document,
-            string payer,
             Adress adress,
             Email email
             )
@@ -23,7 +22,6 @@ namespace PaymentContext.Domain.Entities
             Total = total;
             TotalPaid = totalPaid;
             Document = document;
-            Payer = payer;
             Adress = adress;
             Email = email;
 
