@@ -10,8 +10,7 @@ using PaymentContext.Shared.Handlers;
 
 namespace PaymentContext.Domain.Handlers
 {
-    public class SubscriptionHandler : Notifiable<Notification>,
-    IHandler<CreateBoletoSubscriptionCommand>
+    public class SubscriptionHandler : Notifiable<Notification>, IHandler<CreateBoletoSubscriptionCommand>
     {
         private readonly IStudentRepository _repository;
         private readonly IEmailService _emailService;
@@ -64,6 +63,10 @@ namespace PaymentContext.Domain.Handlers
 
             //Agrupar validações
             AddNotifications(name, document, email, adress, student, subscription, payment);
+
+            //Checar as notificações
+            if(!IsValid)
+                return new CommandResult(false, "Não foi possível realizar sua assinatura.");
 
             //Salvar as informações
             _repository.CreateSubscription(student);

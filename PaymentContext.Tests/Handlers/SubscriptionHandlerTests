@@ -1,0 +1,48 @@
+using PaymentContext.Domain.Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Domain.Commands;
+using PaymentContext.Domain.Handlers;
+using PaymentContext.Tests.Mocks;
+using PaymentContext.Domain.Enums;
+
+namespace PaymentContext.Tests;
+
+[TestClass]
+public class SubscriptionHandlerTests
+{
+    [TestMethod]
+    public void ShouldReturnErrorWhenDocumentExists()
+    {
+        var handler = new SubscriptionHandler(new FakeStudentRepository(), new FakeEmailService());
+        var command = new CreateBoletoSubscriptionCommand();
+
+        command.FirstName = "Bruce";
+        command.LastName = "Wayne";
+        command.Document = "99999999999";
+        command.Email = "hello@balta.io";
+        command.BarCode = "123456789";
+        command.BoletoNumber = "214578958";
+        command.PaymentNumber = "125483";
+        command.PaidDate = DateTime.Now;
+        command.ExpireDate = DateTime.Now.AddMonths(1);
+        command.Total = 60;
+        command.TotalPaid = 60; 
+        command.Payer = "Wayne Corp";
+        command.PayerDocument = "14578965357";
+        command.PayerDocumentType = EDocumentType.CPF;
+        command.PayerEmail = "batman@dc.com";
+        command.Street = "rua tal";
+        command.Number = "A213";
+        command.Neighborhood = "bairro top";
+        command.City = "Sorocity";
+        command.State = "WQ";
+        command.Country = "WE";
+        command.ZipCode = "15789643";
+
+        handler.Handle(command);
+        Assert.AreEqual(false, handler.IsValid);
+    }
+
+}
+
